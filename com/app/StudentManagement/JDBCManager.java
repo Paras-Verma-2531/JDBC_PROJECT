@@ -2,11 +2,20 @@ package com.app.StudentManagement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 public class JDBCManager {
     static Connection con=null;
+    static JDBCManager jdbc=null;
+    private JDBCManager() throws SQLException, ClassNotFoundException {
+        con=CreateConnection.createConnection();
+    }
+    public static JDBCManager factoryMethod() throws SQLException, ClassNotFoundException {
+        if(jdbc==null)
+        {
+            jdbc= new JDBCManager();
+        }return jdbc;
+    }
     public void setData(Students student) throws SQLException {
-        String query="insert into students(?,?,?,?,?,?,?,?)";// dynamic query
+        String query="insert into students(name,course_name,branch,date_of_birth,year,semester,email_id,phn_no) values(?,?,?,?,?,?,?,?)";// dynamic query
         PreparedStatement stm= con.prepareStatement(query);
         stm.setString(1,student.getName());
         stm.setString(2,student.getCourse_name());
@@ -18,8 +27,5 @@ public class JDBCManager {
         stm.setString(8,student.getPhn_no());
         stm.executeUpdate();// execute update[set data]
     }
-    public static void main(String[] args)throws ClassNotFoundException, SQLException {
-      con = CreateConnection.createConnection();
 
-    }
 }
