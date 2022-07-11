@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 public class JDBCManager {
     static Connection con=null;
-    static JDBCManager jdbc=null;
+    private static JDBCManager jdbc=null;
     private JDBCManager() throws SQLException, ClassNotFoundException {
         con=CreateConnection.createConnection();
     }
