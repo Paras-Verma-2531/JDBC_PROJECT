@@ -1,7 +1,11 @@
+import java.sql.SQLException;
 import java.sql.SQLOutput;
-import java.util.Scanner;import com.app.StudentManagement.Students;
+import java.util.Scanner;
+
+import com.app.StudentManagement.JDBCManager;
+import com.app.StudentManagement.Students;
 public class StudentManagementMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner in= new Scanner(System.in);
         while(true)
         {
@@ -29,7 +33,9 @@ public class StudentManagementMain {
                     System.out.print("enter the phone no: ");
                     String phn_no=in.nextLine();
                     Students student=new Students(name,course_name,branch,dob,year,sems,email_id,phn_no);
-                   
+                    JDBCManager jdbc=JDBCManager.factoryMethod();
+                    jdbc.setData(student);
+                    System.out.println("data added succesfully");
                     break;
                 case 2:
                     break;
