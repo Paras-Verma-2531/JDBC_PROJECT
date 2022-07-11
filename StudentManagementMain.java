@@ -33,7 +33,7 @@ public class StudentManagementMain {
                     System.out.print("enter the phone no: ");
                     String phn_no=in.nextLine();
                     Students student=new Students(name,course_name,branch,dob,year,sems,email_id,phn_no);
-                    JDBCManager jdbc=JDBCManager.factoryMethod();
+                    JDBCManager jdbc=JDBCManager.getObject();
                     jdbc.setData(student);
                     System.out.println("data added succesfully");
                     break;
