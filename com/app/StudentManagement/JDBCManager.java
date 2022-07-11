@@ -8,7 +8,7 @@ public class JDBCManager {
     private JDBCManager() throws SQLException, ClassNotFoundException {
         con=CreateConnection.createConnection();
     }
-    public static JDBCManager factoryMethod() throws SQLException, ClassNotFoundException {
+    public static JDBCManager getObject() throws SQLException, ClassNotFoundException {
         if(jdbc==null)
         {
             jdbc= new JDBCManager();
