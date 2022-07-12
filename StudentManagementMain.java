@@ -48,6 +48,7 @@ public class StudentManagementMain {
                 default:
                     System.out.println("please enter the valid input::");
             }
+            System.out.println(  "           *********************************************                " );
         }
     }
 }
