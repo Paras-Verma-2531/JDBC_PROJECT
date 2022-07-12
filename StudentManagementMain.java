@@ -34,8 +34,8 @@ public class StudentManagementMain {
                     String phn_no=in.nextLine();
                     Students student=new Students(name,course_name,branch,dob,year,sems,email_id,phn_no);
                     JDBCManager jdbc=JDBCManager.getObject();
-                    jdbc.setData(student);
-                    System.out.println("data added succesfully");
+                    int id=jdbc.setData(student);
+                    System.out.println("Your data is successfully added in our database with a student id :"+id);
                     break;
                 case 2:
                     break;
