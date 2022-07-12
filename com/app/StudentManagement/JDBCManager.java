@@ -30,7 +30,7 @@ public class JDBCManager {
         return getStudentId(student.getName(),student.getDateOfBirth());
     }
     public int getStudentId(String name,String dob) throws SQLException {
-        String query=" select sid from students where name=?,date_of_birth=?";
+        String query=" select sid from students where name=?and date_of_birth=?";
         PreparedStatement stm=con.prepareStatement(query);
         stm.setString(1,name);
         stm.setString(2,dob);
