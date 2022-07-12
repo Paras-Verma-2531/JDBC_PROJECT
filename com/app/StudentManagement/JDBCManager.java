@@ -1,6 +1,7 @@
 package com.app.StudentManagement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 public class JDBCManager {
     static Connection con=null;
@@ -14,7 +15,7 @@ public class JDBCManager {
             jdbc= new JDBCManager();
         }return jdbc;
     }
-    public void setData(Students student) throws SQLException {
+    public  int setData(Students student) throws SQLException {
         String query="insert into students(name,course_name,branch,date_of_birth,year,semester,email_id,phn_no) values(?,?,?,?,?,?,?,?)";// dynamic query
         PreparedStatement stm= con.prepareStatement(query);
         stm.setString(1,student.getName());
@@ -26,6 +27,19 @@ public class JDBCManager {
         stm.setString(7,student.getEmail_id());
         stm.setString(8,student.getPhn_no());
         stm.executeUpdate();// execute update[set data]
+        return getStudentId(student.getName(),student.getDateOfBirth());
+    }
+    public int getStudentId(String name,String dob) throws SQLException {
+        String query=" select sid from students where name=?,date_of_birth=?";
+        PreparedStatement stm=con.prepareStatement(query);
+        stm.setString(1,name);
+        stm.setString(2,dob);
+        ResultSet id=stm.executeQuery();int sid=-1;
+        while(id.next())
+        {
+            sid=id.getInt("sid");
+        }
+         return sid;
     }
 
 }
